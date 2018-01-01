@@ -43,6 +43,10 @@ Game.prototype.updateScore=function(snake) {
   this.score += 10;
 }
 
+Game.prototype.getScore=function(snake) {
+  return this.score;
+}
+
 Game.prototype.hasSnakeEatenFood=function() {
   return this.snake.head.isSameCoordAs(this.food.getPosition());
 }

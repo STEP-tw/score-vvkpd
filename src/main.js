@@ -7,20 +7,24 @@ let score = 0;
 let animator=undefined;
 
 
+const ifSnakeHasEatenFood = function(){
+  if(game.hasSnakeEatenFood()) {
+    game.updateScore();
+    game.grow();
+    game.createFood();
+    drawFood(game.getFood());
+    displayScore(game.getScore());
+  }
+}
 
 const animateSnake=function() {
   let details=game.move();
   paintBody(details.oldHead);
   unpaintSnake(details.oldTail);
   paintHead(details.head);
-  displayScore(game.score);
-  if(game.hasSnakeEatenFood()) {
-    game.updateScore();
-    game.grow();
-    game.createFood();
-    drawFood(game.getFood());
-  }
+  ifSnakeHasEatenFood();
 }
+
 
 const changeSnakeDirection=function(event) {
   switch (event.code) {
